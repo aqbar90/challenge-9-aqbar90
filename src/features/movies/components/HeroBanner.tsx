@@ -23,38 +23,22 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
     >
       {/* BACKDROP */}
 
-      <picture>
-        <source media="(min-width: 768px)" srcSet={`${IMAGE_BASE_URL}${movie.backdrop_path}`} />
-
-        <img
-          src={`${IMAGE_BASE_URL}${movie.poster_path}`}
-          alt={movie.title}
-          className="
+      <img
+        src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+        alt={movie.title}
+        className="
           absolute
           inset-0
           h-full
           w-full
-          object-cover
-          lg:object-center
-        "
-        />
-      </picture>
-      {/* DARK OVERLAY */}
-      <div
-        className="
-          absolute
-          inset-0
-          bg-linear-to-t
-        from-black
-        via-black/60
-        to-black/20
+          object-cover-down
+          
         "
       />
 
       {/* HERO GRADIENT */}
       <div
         className="
-          hero-gradient
           absolute
           inset-0
         "
@@ -80,11 +64,14 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
           pt-55.75
           relative
           z-10
-          mx-auto
           flex
           min-h-dvh
-          max-w-width
+          min-w-full
           items-end
+          bg-linear-to-t
+          from-black
+          via-black/70
+          to-black/10
           md:pl-8xl
           md:pb-50
           lg:pt-74.5
@@ -92,22 +79,21 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
           lg:pl-11xl
           lg:pr-166.25
           lg:items-center
+          
         "
       >
-        <div
-          className="
-            max-w-155
-          "
-        >
+        <div>
           <h1
             className="
               text-neutral-25
               font-primary
               font-bold
               text-display-xs
+              tracking-display
               leading-display-xs
               md:text-display-lg
               lg:text-display-2xl
+              lg:leading-display-2xl
             "
           >
             {movie.title}
@@ -120,11 +106,8 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
               font-primary
               font-regular
               leading-sm
-              md:text-md
-              md:leading-sm
-              md:
-              lg:text-lg
-              lg:leading-lg
+              lg:text-md
+              lg:leading-md
               lg:w-158.75
             "
           >
@@ -133,11 +116,10 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
 
           <div
             className="
-              mt-6
+              mt-12
               flex
               flex-col
-              gap-md
-              p-md
+              gap-xl
               sm:flex-row
             "
           >
@@ -165,7 +147,7 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
               </span>
             </Button>
 
-            <Button variant="movieOutline" size="hero">
+            <Button variant="movieOutline" size="heroOutline">
               See Detail
             </Button>
           </div>

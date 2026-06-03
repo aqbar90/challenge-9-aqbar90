@@ -16,11 +16,14 @@ const buttonVariants = cva(
           'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
         link: 'text-primary underline-offset-4 hover:underline',
         movie: `
-          bg-red-700
+          bg-[#961200]
           text-neutral-25
-          text-sm
+          text-md
           font-semibold
           font-primary
+          p-md
+          gap-md
+          leading-md
           hover:bg-red-600
           rounded-full
           transition-all
@@ -32,7 +35,13 @@ const buttonVariants = cva(
           border
           border-neutral-900
           text-neutral-25
+          text-md
+          font-semibold
+          font-primary
+          leading-md
           rounded-full
+          p-md
+          gap-md
           hover:bg-neutral-900/40
           hover:border-neutral-500
           transition-all
@@ -54,8 +63,14 @@ const buttonVariants = cva(
         hero: `
           h-[52px]
           px-8
-          md:h-[56px]
-          md:px-10
+          md:px-9.5
+          lg:px-11
+        `,
+        heroOutline: `
+          h-[52px]
+          px-8
+          md:px-[75px]
+          lg:px-[75px]
         `,
       },
     },
