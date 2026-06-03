@@ -1,27 +1,45 @@
 import { Menu, Search, Tv } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ThemeToggle from '../ui/ThemeToggle';
 import SearchInput from '../ui/SearchInput';
 import MobileMenu from './MobileMenu';
+import { cn } from '@/lib/utils';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
       <header
-        className="
+        className={cn(
+          `
+          fixed
+          top-0
+          left-0
           px-4.5
           py-2xl
-          absolute
+          lg:px-11xl
+          lg:py-8
           z-50
           w-full
-          border-b
-          border-white/10
-          bg-black/20
-          backdrop-blur-md
-        "
+          transition-all
+          duration-300`,
+          scrolled ? 'bg-[#0A0D1299]/40 backdrop-blur-xl' : 'bg-transparent'
+        )}
       >
         <div
           className="
@@ -34,45 +52,47 @@ const Navbar = () => {
         >
           <div
             className="
+              hidden
+              md:flex
+              lg:gap-8xl
+            "
+          >
+            <div
+              className="
               flex
               items-center
               gap-xs
             "
-          >
-            {/* Logo */}
+            >
+              {/* Logo */}
 
-            <Tv size={20} className="text-neutral-25" fill="currentColor" />
+              <Tv size={20} className="text-neutral-25 lg:size-7" fill="currentColor" />
 
-            <Link
-              to="/"
-              className="
+              <Link
+                to="/"
+                className="
               text-xl
               font-primary
               font-bold
               tracking-tighter
               leading-3xl
               text-neutral-25
+              lg:font-semibold
+              lg:text-display-sm
             "
-            >
-              Movie
-            </Link>
-          </div>
+              >
+                Movie
+              </Link>
+            </div>
 
-          {/* Desktop */}
+            {/* Desktop */}
 
-          <div
-            className="
-              hidden
-              items-center
-              gap-12
-              md:flex
-            "
-          >
             <nav
               className="
                 flex
                 items-center
                 gap-8
+                lg:gap-6xl
               "
             >
               <Link to="/" className="text-neutral-25">
@@ -83,20 +103,19 @@ const Navbar = () => {
                 Favorites
               </Link>
             </nav>
+          </div>
 
-            <div
-              className="
+          <div
+            className="
                 flex
                 items-center
                 gap-3
               "
-            >
-              <SearchInput />
+          >
+            <SearchInput />
 
-              <ThemeToggle />
-            </div>
+            <ThemeToggle />
           </div>
-
           {/* Mobile */}
 
           <div
