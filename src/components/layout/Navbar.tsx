@@ -30,8 +30,10 @@ const Navbar = () => {
           fixed
           top-0
           left-0
-          px-4.5
+          px-4
           py-2xl
+          md:px-8xl
+          md:py-6
           lg:px-11xl
           lg:py-8
           z-50
@@ -43,26 +45,26 @@ const Navbar = () => {
       >
         <div
           className="
-            mx-auto
             flex
-            max-w-full
+            w-full
             items-center
             justify-between
           "
         >
           <div
             className="
-              hidden
-              md:flex
-              lg:gap-8xl
+              flex
+              items-center
+              gap-20
             "
           >
             <div
               className="
-              flex
-              items-center
-              gap-xs
-            "
+                    flex
+                    items-center
+                    gap-xs
+                    
+                  "
             >
               {/* Logo */}
 
@@ -71,51 +73,74 @@ const Navbar = () => {
               <Link
                 to="/"
                 className="
-              text-xl
-              font-primary
-              font-bold
-              tracking-tighter
-              leading-3xl
-              text-neutral-25
-              lg:font-semibold
-              lg:text-display-sm
-            "
+                      text-xl
+                      font-primary
+                      font-bold
+                      tracking-tighter
+                      leading-3xl
+                      text-neutral-25
+                      lg:font-semibold
+                      lg:text-display-sm
+                    "
               >
                 Movie
               </Link>
             </div>
 
-            {/* Desktop */}
-
-            <nav
+            <div
               className="
-                flex
+                hidden
+                lg:flex
                 items-center
-                gap-8
-                lg:gap-6xl
               "
             >
-              <Link to="/" className="text-neutral-25">
-                Home
-              </Link>
+              {/* Desktop */}
 
-              <Link to="/favorites" className="text-white">
-                Favorites
-              </Link>
-            </nav>
+              <nav
+                className="
+                hidden
+                items-center
+                md:hidden
+                lg:flex
+                lg:gap-6xl
+              "
+              >
+                <Link
+                  to="/"
+                  className="
+                text-neutral-25
+                transition-colors
+                duration-300
+                hover:text-primary-200"
+                >
+                  Home
+                </Link>
+
+                <Link
+                  to="/favorites"
+                  className="
+                  text-neutral-25
+                  transition-colors
+                  duration-300
+                  hover:text-primary-200"
+                >
+                  Favorites
+                </Link>
+              </nav>
+            </div>
           </div>
-
           <div
             className="
-                flex
-                items-center
-                gap-3
-              "
+              hidden
+              lg:flex
+              items-center
+              gap-3
+                "
           >
             <SearchInput />
-
             <ThemeToggle />
           </div>
+
           {/* Mobile */}
 
           <div
@@ -123,7 +148,7 @@ const Navbar = () => {
               flex
               items-center
               gap-4
-              md:hidden
+              lg:hidden
             "
           >
             <button

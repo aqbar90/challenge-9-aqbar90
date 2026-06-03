@@ -14,6 +14,7 @@ const SearchInput = () => {
         py-md
         backdrop-blur-md
         gap-md
+        
       "
     >
       <Search size={18} className="text-neutral-400 lg:size-3xl" />

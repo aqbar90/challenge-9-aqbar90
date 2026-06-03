@@ -76,6 +76,8 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
       {/* CONTENT */}
       <div
         className="
+          px-4
+          pt-55.75
           relative
           z-10
           mx-auto
@@ -83,12 +85,13 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
           min-h-dvh
           max-w-width
           items-end
-          px-4
-          pt-55.75
-          md:px-8
-          md:pb-28
+          md:pl-8xl
+          md:pb-50
+          lg:pt-74.5
+          lg:pb-61.5
+          lg:pl-11xl
+          lg:pr-166.25
           lg:items-center
-          lg:px-35.75
         "
       >
         <div
@@ -117,8 +120,12 @@ export default function HeroBanner({ movie, children }: HeroBannerProps) {
               font-primary
               font-regular
               leading-sm
-              md:text-base
-              md:max-w-140
+              md:text-md
+              md:leading-sm
+              md:
+              lg:text-lg
+              lg:leading-lg
+              lg:w-158.75
             "
           >
             {movie.overview}
