@@ -1,52 +1,87 @@
-import { IMAGE_BASE_URL } from '@/lib/constants';
+import { Star } from 'lucide-react';
+import MovieRankBadge from './MovieRankBadge';
 
 interface MovieCardProps {
-  id: number;
+  key: number;
+  rank: number;
   title: string;
-  posterPath: string | null;
+  posterPath: string;
   rating: number;
 }
 
-const MovieCard = ({ title, posterPath, rating }: MovieCardProps) => {
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+
+export default function MovieCard({ rank, title, posterPath, rating }: MovieCardProps) {
   return (
-    <div
+    <article
       className="
-        overflow-hidden
-        rounded-2xl
-        bg-neutral-900
+        group
+        shrink-0
+        cursor-pointer
       "
     >
-      <img
-        src={`${IMAGE_BASE_URL}/w500${posterPath}`}
-        alt={title}
+      <div
         className="
-          aspect-2/3
-          w-full
-          object-cover
+          relative
+          overflow-hidden
+          rounded-3xl
         "
-      />
-      <div className="p-4">
-        <h3
+      >
+        <MovieRankBadge rank={rank} />
+
+        <img
+          src={`${IMAGE_BASE_URL}${posterPath}`}
+          alt={title}
           className="
-            line-clamp-2
-            font-semibold
-            text-white
+            h-55
+            md:h-65
+            lg:h-67.5
+            w-full
+            object-cover
+            transition-transform
+            duration-300
+            group-hover:scale-105
           "
-        >
-          {title}
-        </h3>
-        <p
+        />
+      </div>
+
+      <h3
+        className="
+          mt-4
+          line-clamp-2
+          text-xl
+          font-semibold
+          text-neutral-25
+        "
+      >
+        {title}
+      </h3>
+
+      <div
+        className="
+          mt-2
+          flex
+          items-center
+          gap-1
+        "
+      >
+        <Star
           className="
-            mt-2
-            text-sm
+            h-4
+            w-4
+            fill-yellow-400
             text-yellow-400
           "
-        >
-          ⭐ {rating.toFixed(1)}
-        </p>
-      </div>
-    </div>
-  );
-};
+        />
 
-export default MovieCard;
+        <span
+          className="
+            text-neutral-400
+          "
+        >
+          {rating.toFixed(1)}/10
+        </span>
+      </div>
+    </article>
+  );
+}
