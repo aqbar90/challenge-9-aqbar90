@@ -30,6 +30,12 @@ export default function NewReleaseSection() {
     };
   }, []);
 
+  const allMovies = data?.results ?? [];
+
+  const visibleMovies = allMovies.slice(0, visibleCount);
+
+  const hasMore = visibleCount < allMovies.length;
+
   const handleLoadMore = () => {
     const width = window.innerWidth;
 
@@ -45,8 +51,6 @@ export default function NewReleaseSection() {
   if (isLoading) {
     return null;
   }
-
-  const movies = data?.results.slice(0, visibleCount) ?? [];
 
   return (
     <section
@@ -70,9 +74,30 @@ export default function NewReleaseSection() {
         New Release
       </h2>
 
-      <NewReleaseGrid movies={movies} />
+      <div className="relative">
+        <NewReleaseGrid movies={visibleMovies} />
 
-      {visibleCount < (data?.results.length ?? 0) && <LoadMoreButton onClick={handleLoadMore} />}
+        {/* Fade Overlay */}
+        {hasMore && (
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-x-0
+              bottom-0
+              h-335
+              bg-linear-to-t
+              from-background
+              via-background/10
+              to-transparent
+              z-10
+            "
+          />
+        )}
+
+        {/* Load More */}
+        {hasMore && <LoadMoreButton onClick={handleLoadMore} />}
+      </div>
     </section>
   );
 }
